@@ -1,0 +1,169 @@
+/* src/components/PaymentModal/PaymentModal.css */
+.pm-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1100;
+    animation: fadeIn 0.3s ease;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  .pm-modal {
+    background: white;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 550px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    animation: slideUp 0.3s ease;
+  }
+  
+  @keyframes slideUp {
+    from {
+      transform: translateY(30px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  .pm-modal-header {
+    padding: 20px;
+    border-bottom: 2px solid #f0f0f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(135deg, #2c1810, #3d2a1e);
+    color: white;
+    border-radius: 20px 20px 0 0;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  
+  .pm-modal-header h2 {
+    margin: 0;
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .pm-modal-close {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  
+  .pm-modal-close:hover {
+    background: rgba(255, 255, 255, 0.3);
+  }
+  
+  .pm-modal-body {
+    padding: 20px;
+    max-height: calc(90vh - 80px);
+    overflow-y: auto;
+  }
+  
+  .pm-method-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding: 5px;
+    background: #f8f5f0;
+    border-radius: 12px;
+  }
+  
+  .pm-method-tab {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 12px;
+    border: none;
+    background: transparent;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: #666;
+  }
+  
+  .pm-method-tab i {
+    font-size: 24px;
+    margin-bottom: 5px;
+  }
+  
+  .pm-method-tab span {
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 2px;
+  }
+  
+  .pm-method-tab small {
+    font-size: 10px;
+    opacity: 0.8;
+  }
+  
+  .pm-method-tab.pm-active {
+    background: white;
+    color: #2c1810;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .pm-amount-display {
+    text-align: center;
+    padding: 15px;
+    background: linear-gradient(135deg, #f8f5f0, #f0e9e0);
+    border-radius: 12px;
+    margin-bottom: 20px;
+  }
+  
+  .pm-amount-label {
+    display: block;
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+  }
+  
+  .pm-amount-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #2c1810;
+  }
+  
+  @media (max-width: 600px) {
+    .pm-method-tabs {
+      flex-direction: column;
+    }
+    
+    .pm-method-tab {
+      flex-direction: row;
+      justify-content: flex-start;
+      gap: 15px;
+    }
+    
+    .pm-method-tab i {
+      margin-bottom: 0;
+    }
+  }

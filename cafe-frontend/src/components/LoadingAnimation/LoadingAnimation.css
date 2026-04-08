@@ -1,0 +1,187 @@
+/* LoadingAnimation.css */
+
+.loading-animation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    background: transparent;
+    z-index: 1000;
+  }
+  
+  .loading-animation.full-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(5px);
+  }
+  
+  .animation-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+  }
+  
+  /* Coffee Cup Animation */
+  .coffee-cup {
+    position: relative;
+  }
+  
+  .cup {
+    position: absolute;
+    background: linear-gradient(to right, #6f4e37, #8b4513);
+    border-radius: 0 0 15% 15%;
+    bottom: 0;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .cup:before {
+    content: '';
+    position: absolute;
+    width: 120%;
+    height: 25%;
+    background: linear-gradient(to right, #8b4513, #6f4e37);
+    border-radius: 50%;
+    top: -12%;
+    left: -10%;
+  }
+  
+  .handle {
+    position: absolute;
+    border: solid #6f4e37;
+    border-left: none;
+    border-radius: 0 50% 50% 0;
+  }
+  
+  .steam {
+    position: absolute;
+    background: rgba(139, 69, 19, 0.3);
+    border-radius: 50%;
+    animation: steamRise 2s infinite ease-in-out;
+  }
+  
+  .steam1 {
+    animation-delay: 0.2s;
+  }
+  
+  .steam2 {
+    animation-delay: 0.5s;
+  }
+  
+  .steam3 {
+    animation-delay: 0.8s;
+  }
+  
+  @keyframes steamRise {
+    0%, 100% {
+      transform: translateY(0) scale(1);
+      opacity: 0.3;
+    }
+    50% {
+      transform: translateY(-20px) scale(1.1);
+      opacity: 0.6;
+    }
+  }
+  
+  /* Text Animation */
+  .loading-text {
+    text-align: center;
+  }
+  
+  .text-animation {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #4a2c2a;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .letter {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(10px);
+    animation: letterFloat 0.5s ease forwards;
+  }
+  
+  @keyframes letterFloat {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Loading Dots */
+  .loading-dots {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+  
+  .dot {
+    width: 10px;
+    height: 10px;
+    background: #8b4513;
+    border-radius: 50%;
+    animation: dotBounce 1.4s infinite ease-in-out both;
+  }
+  
+  .dot:nth-child(1) {
+    animation-delay: -0.32s;
+  }
+  
+  .dot:nth-child(2) {
+    animation-delay: -0.16s;
+  }
+  
+  @keyframes dotBounce {
+    0%, 80%, 100% {
+      transform: scale(0);
+    }
+    40% {
+      transform: scale(1);
+    }
+  }
+  
+  /* Sizes */
+  .loading-animation.small .text-animation {
+    font-size: 1rem;
+  }
+  
+  .loading-animation.medium .text-animation {
+    font-size: 1.5rem;
+  }
+  
+  .loading-animation.large .text-animation {
+    font-size: 2rem;
+  }
+  
+  /* Dark Mode Support */
+  @media (prefers-color-scheme: dark) {
+    .loading-animation.full-screen {
+      background: rgba(0, 0, 0, 0.95);
+    }
+    
+    .text-animation {
+      color: #f5deb3;
+    }
+    
+    .dot {
+      background: #f5deb3;
+    }
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .text-animation {
+      font-size: 1.2rem;
+    }
+    
+    .loading-dots {
+      margin-top: 0.5rem;
+    }
+  }

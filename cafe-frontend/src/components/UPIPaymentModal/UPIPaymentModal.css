@@ -1,0 +1,635 @@
+/* src/components/UPIPaymentModal/UPIPaymentModal.css */
+.upip-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1100;
+    animation: fadeIn 0.3s ease;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  .upip-modal {
+    background: white;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    animation: slideUp 0.3s ease;
+  }
+  
+  @keyframes slideUp {
+    from {
+      transform: translateY(30px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  .upip-modal-header {
+    padding: 20px;
+    border-bottom: 2px solid #f0f0f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(135deg, #2c1810, #3d2a1e);
+    color: white;
+    border-radius: 20px 20px 0 0;
+  }
+  
+  .upip-modal-header h2 {
+    margin: 0;
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .upip-modal-close {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  
+  .upip-modal-close:hover {
+    background: rgba(255, 255, 255, 0.3);
+  }
+  
+  .upip-modal-body {
+    padding: 25px;
+  }
+  
+  .upip-amount-display {
+    text-align: center;
+    padding: 20px;
+    background: linear-gradient(135deg, #f8f5f0, #f0e9e0);
+    border-radius: 12px;
+    margin-bottom: 20px;
+  }
+  
+  .upip-amount-label {
+    display: block;
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+  }
+  
+  .upip-amount-value {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #2c1810;
+  }
+  
+  .upip-timer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: #e74c3c;
+    font-size: 0.9rem;
+    padding: 10px;
+    background: #fee9e7;
+    border-radius: 8px;
+    margin-bottom: 20px;
+  }
+  
+  .upip-app-selector {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-bottom: 25px;
+  }
+  
+  .upip-app-btn {
+    padding: 10px 5px;
+    border: 2px solid #f0f0f0;
+    background: white;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  
+  .upip-app-btn img {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+  }
+  
+  .upip-app-btn span {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #666;
+  }
+  
+  .upip-app-btn.active {
+    border-color: #2c1810;
+    background: #f8f5f0;
+    transform: scale(1.05);
+    box-shadow: 0 2px 8px rgba(44, 24, 16, 0.1);
+  }
+  
+  .upip-app-btn.active span {
+    color: #2c1810;
+  }
+  
+  .upip-qr-container {
+    text-align: center;
+    padding: 20px;
+    background: #f8f5f0;
+    border-radius: 12px;
+    margin-bottom: 20px;
+  }
+  
+  .upip-qr-code {
+    width: 250px;
+    height: 250px;
+    margin: 0 auto 15px;
+    background: white;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .upip-qr-hint {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+  }
+  
+  .upip-open-app-btn {
+    background: #2c1810;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: background 0.2s;
+  }
+  
+  .upip-open-app-btn:hover {
+    background: #3d2a1e;
+  }
+  
+  .upip-verifying {
+    text-align: center;
+    padding: 20px;
+    background: #f8f5f0;
+    border-radius: 12px;
+    margin: 20px 0;
+  }
+  
+  .upip-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid #f0f0f0;
+    border-top-color: #2c1810;
+    border-radius: 50%;
+    margin: 0 auto 15px;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+  
+  .upip-success {
+    text-align: center;
+    padding: 20px;
+    background: #e8f5e9;
+    border-radius: 12px;
+    margin: 20px 0;
+  }
+  
+  .upip-success i {
+    font-size: 48px;
+    color: #27ae60;
+    margin-bottom: 10px;
+  }
+  
+  .upip-success p {
+    color: #27ae60;
+    font-weight: 600;
+    margin: 0;
+  }
+  
+  .upip-failed {
+    text-align: center;
+    padding: 20px;
+    background: #fee9e7;
+    border-radius: 12px;
+    margin: 20px 0;
+  }
+  
+  .upip-failed i {
+    font-size: 48px;
+    color: #e74c3c;
+    margin-bottom: 10px;
+  }
+  
+  .upip-failed p {
+    color: #e74c3c;
+    margin-bottom: 15px;
+  }
+  
+  .upip-retry-btn {
+    background: white;
+    border: 2px solid #e74c3c;
+    color: #e74c3c;
+    padding: 8px 20px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  
+  .upip-retry-btn:hover {
+    background: #e74c3c;
+    color: white;
+  }
+  
+  .upip-error {
+    background: #fee9e7;
+    color: #e74c3c;
+    padding: 12px;
+    border-radius: 8px;
+    margin: 15px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+  }
+  
+  .upip-instructions {
+    background: #f8f5f0;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+  }
+  
+  .upip-instructions h4 {
+    margin: 0 0 10px;
+    color: #2c1810;
+    font-size: 1rem;
+  }
+  
+  .upip-instructions ol {
+    margin: 0;
+    padding-left: 20px;
+    color: #666;
+    font-size: 0.9rem;
+  }
+  
+  .upip-instructions li {
+    margin-bottom: 5px;
+  }
+  
+  .upip-verify-manual {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, #27ae60, #2ecc71);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: opacity 0.2s;
+  }
+  
+  .upip-verify-manual:hover:not(:disabled) {
+    opacity: 0.9;
+  }
+  
+  .upip-verify-manual:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  /* Receipt View Styles */
+  .upip-receipt-view {
+    padding: 25px;
+  }
+  
+  .upip-receipt-content {
+    background: white;
+    border: 2px solid #f0f0f0;
+    border-radius: 12px;
+    padding: 25px;
+    margin: 20px 0;
+  }
+  
+  .upip-receipt-header {
+    text-align: center;
+    border-bottom: 2px solid #8b4513;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+  }
+  
+  .upip-receipt-header h3 {
+    margin: 0;
+    color: #2c1810;
+    font-size: 1.5rem;
+  }
+  
+  .upip-receipt-header p {
+    margin: 5px 0;
+    color: #666;
+    font-size: 0.9rem;
+  }
+  
+  .upip-receipt-details {
+    margin-bottom: 20px;
+  }
+  
+  .upip-receipt-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding: 5px 0;
+    border-bottom: 1px dashed #ddd;
+  }
+  
+  .upip-receipt-row:last-child {
+    border-bottom: none;
+  }
+  
+  .upip-receipt-row span:first-child {
+    color: #666;
+  }
+  
+  .upip-receipt-row strong {
+    color: #2c1810;
+    font-weight: 600;
+  }
+  
+  .upip-receipt-total {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 2px solid #333;
+    font-size: 1.2rem;
+  }
+  
+  .upip-payment-badge {
+    background: #27ae60;
+    color: white !important;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+  }
+  
+  .upip-receipt-footer {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid #ddd;
+    color: #666;
+    font-size: 0.9rem;
+  }
+  
+  .upip-receipt-footer p {
+    margin: 5px 0;
+  }
+  
+  .upip-receipt-note {
+    font-size: 0.8rem;
+    color: #999;
+  }
+  
+  .upip-receipt-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    margin-top: 20px;
+  }
+  
+  .upip-print-btn,
+  .upip-download-btn,
+  .upip-close-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s;
+  }
+  
+  .upip-print-btn {
+    background: #3498db;
+    color: white;
+  }
+  
+  .upip-print-btn:hover {
+    background: #2980b9;
+  }
+  
+  .upip-download-btn {
+    background: #27ae60;
+    color: white;
+  }
+  
+  .upip-download-btn:hover {
+    background: #229954;
+  }
+  
+  .upip-close-btn {
+    background: #f0f0f0;
+    color: #666;
+  }
+  
+  .upip-close-btn:hover {
+    background: #e0e0e0;
+  }
+  
+  @media (max-width: 600px) {
+    .upip-app-selector {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .upip-receipt-actions {
+      flex-direction: column;
+    }
+    
+    .upip-print-btn,
+    .upip-download-btn,
+    .upip-close-btn {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+
+  /* Add to UPIPaymentModal.css */
+.upip-embedded {
+    width: 100%;
+  }
+  
+  .upip-embedded .upip-app-selector {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-bottom: 15px;
+  }
+  
+  .upip-embedded .upip-app-btn {
+    padding: 8px;
+  }
+  
+  .upip-embedded .upip-app-btn img {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .upip-embedded .upip-qr-code {
+    width: 180px;
+    height: 180px;
+  }
+  
+  .upip-embedded .upip-verify-manual {
+    width: 100%;
+    padding: 12px;
+    margin-top: 15px;
+  }
+  
+  .upip-receipt-view {
+    padding: 20px;
+  }
+  
+  .upip-receipt-content {
+    background: white;
+    border: 2px solid #f0f0f0;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .upip-receipt-header {
+    text-align: center;
+    border-bottom: 2px solid #8b4513;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+  }
+  
+  .upip-receipt-header h3 {
+    margin: 0;
+    color: #2c1810;
+    font-size: 1.4rem;
+  }
+  
+  .upip-receipt-details {
+    margin-bottom: 15px;
+  }
+  
+  .upip-receipt-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    padding: 5px 0;
+    border-bottom: 1px dashed #ddd;
+  }
+  
+  .upip-receipt-total {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 2px solid #333;
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  
+  .upip-payment-badge {
+    background: #27ae60;
+    color: white;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+  }
+  
+  .upip-receipt-footer {
+    text-align: center;
+    padding-top: 15px;
+    border-top: 1px solid #ddd;
+    color: #666;
+  }
+  
+  .upip-receipt-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+  }
+  
+  .upip-print-btn,
+  .upip-download-btn,
+  .upip-close-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .upip-print-btn {
+    background: #3498db;
+    color: white;
+  }
+  
+  .upip-download-btn {
+    background: #27ae60;
+    color: white;
+  }
+  
+  .upip-close-btn {
+    background: #f0f0f0;
+    color: #666;
+  }
+  
+  @media (max-width: 600px) {
+    .upip-receipt-actions {
+      flex-direction: column;
+    }
+    
+    .upip-print-btn,
+    .upip-download-btn,
+    .upip-close-btn {
+      width: 100%;
+      justify-content: center;
+    }
+  }
